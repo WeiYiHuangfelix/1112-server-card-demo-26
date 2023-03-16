@@ -7,6 +7,8 @@ var logger = require('morgan');
 const dotenv = require('dotenv'); //.env
 dotenv.config();
 
+const cors = require('cors');
+
 const db = require('./utils/database');
 //const testDB  = require('./utils/test-db');
 
@@ -30,6 +32,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
